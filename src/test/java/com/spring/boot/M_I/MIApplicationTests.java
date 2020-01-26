@@ -1,4 +1,4 @@
-package Main.M_I;
+package com.spring.boot.M_I;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

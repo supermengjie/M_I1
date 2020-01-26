@@ -1,6 +1,6 @@
-package vo;
+package com.spring.boot.vo;
 
-import javax.persistence.Id;
+
 
 public class Vehicle {
     private int id;
@@ -9,7 +9,7 @@ public class Vehicle {
     private String model;
 
 
-    @Id
+
     public int getId() {
         return id;
     }

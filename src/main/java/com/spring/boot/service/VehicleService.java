@@ -1,12 +1,12 @@
-package Service;
+package com.spring.boot.service;
 
-import vo.Vehicle;
+import com.spring.boot.vo.Vehicle;
 
 import java.util.List;
 
 public interface VehicleService {
 
-    public String update(Vehicle vechile);
+    String update(Vehicle vechile);
 
     String save(Vehicle vehicle);
 

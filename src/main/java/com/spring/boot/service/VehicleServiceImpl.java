@@ -1,9 +1,11 @@
-package Service;
+package com.spring.boot.service;
 
-import vo.Vehicle;
+import org.springframework.stereotype.Service;
+import com.spring.boot.vo.Vehicle;
 
 import java.util.List;
 
+@Service
 public class VehicleServiceImpl implements VehicleService {
 
     @Override

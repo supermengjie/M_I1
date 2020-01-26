@@ -1,6 +1,7 @@
-package Entity;
+package com.spring.boot.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,7 @@ public class VehicleEntity {
     private String model;
 
 
-
+    @Id
     public int getId() {
         return id;
     }
