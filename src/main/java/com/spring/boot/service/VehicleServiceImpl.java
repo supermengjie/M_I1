@@ -27,7 +27,7 @@ public class VehicleServiceImpl implements VehicleService {
             vehicleEntity.setYear(vehicle.getYear());
             return "success";
         }else{
-            return "false";
+            return "failure";
         }
 
     }
@@ -65,7 +65,14 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void deleteStudentById(int id){
-        vehicleDao.deleteById(id);
+    public void deleteVehicleById(int id){
+        if(vehicleDao.findById(id).isPresent()){
+            vehicleDao.deleteById(id);
+            System.out.println("deleted");
+        }else{
+            System.out.println("id not present");
+        }
+
+
     }
 }

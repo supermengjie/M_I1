@@ -14,5 +14,5 @@ public interface VehicleService {
 
     Vehicle findVehiclesById(int id);
 
-    void deleteStudentById(int id);
+    void deleteVehicleById(int id);
 }

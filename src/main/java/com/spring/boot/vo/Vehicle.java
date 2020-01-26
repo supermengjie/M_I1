@@ -1,15 +1,12 @@
 package com.spring.boot.vo;
 
 
-import javax.persistence.Id;
 
 public class Vehicle {
     private int Id;
     private int Year;
     private String Make;
     private String Model;
-
-
 
     public int getId() {
         return Id;
