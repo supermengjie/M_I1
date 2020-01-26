@@ -1,54 +1,55 @@
 package com.spring.boot.vo;
 
 
+import javax.persistence.Id;
 
 public class Vehicle {
-    private int id;
-    private int year;
-    private String make;
-    private String model;
+    private int Id;
+    private int Year;
+    private String Make;
+    private String Model;
 
 
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        Id = id;
     }
 
     public int getYear() {
-        return year;
+        return Year;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        Year = year;
     }
 
     public String getMake() {
-        return make;
+        return Make;
     }
 
     public void setMake(String make) {
-        this.make = make;
+        Make = make;
     }
 
     public String getModel() {
-        return model;
+        return Model;
     }
 
     public void setModel(String model) {
-        this.model = model;
+        Model = model;
     }
 
     @Override
     public String toString() {
-        return "VehicleVO{" +
-                "id=" + id +
-                ", year=" + year +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
+        return "Vehicle{" +
+                "Id=" + Id +
+                ", Year=" + Year +
+                ", Make='" + Make + '\'' +
+                ", Model='" + Model + '\'' +
                 '}';
     }
 }
