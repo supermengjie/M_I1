@@ -3,26 +3,30 @@ package com.spring.boot.controller;
 import com.spring.boot.service.VehicleService;
 import com.spring.boot.vo.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
+
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
+
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("vehicles")
 public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @RequestMapping(name= "/vehicles", method = RequestMethod.GET, produces = "application/json")
-    public List<Vehicle > getVehicles(){
-        List<Vehicle> vehicles = vehicleService.findVehicles();
+   @GetMapping()
+    public List<Vehicle > getVehicles(@RequestParam(value = "Year", required = false) Integer Year, @RequestParam(value = "Make", required = false) String Make, @RequestParam(value = "Model",required = false)String Model){
+       System.out.println(Year+" "+Make+" "+Model);
+       List<Vehicle> vehicles = vehicleService.findVehicles();
         System.out.println(vehicles);
         return  vehicles;
     }
 
 
-    @PostMapping(value= "/vehicles")
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Vehicle addVehicles( @RequestBody Vehicle vehicle){
         System.out.println(vehicle);
         if(vehicle == null){
@@ -36,14 +40,15 @@ public class VehicleController {
 
     }
 
-    @RequestMapping(name = "/vehicles", method = RequestMethod.PUT)
-    public String updateVehicle(@RequestBody Vehicle vehicle){
+    @PutMapping()
+    public void updateVehicle(@RequestBody Vehicle vehicle){
+        System.out.println(vehicle);
+        vehicleService.update(vehicle);
 
-        return vehicleService.update(vehicle);
     }
 
 
-    @GetMapping("/vehicles/{id}")
+    @GetMapping("/{id}")
     public Vehicle findVehicleById(@PathVariable Integer id){
         System.out.println(id);
 
@@ -53,7 +58,8 @@ public class VehicleController {
 
 
 
-    @DeleteMapping("vehicles/{id}")
+
+    @DeleteMapping("/{id}")
     public void deleteVehicle(@PathVariable Integer id){
         System.out.println("delete " +id);
         vehicleService.deleteVehicleById(id);
@@ -61,9 +67,5 @@ public class VehicleController {
     }
 
 
-    @GetMapping("/")
-    public String helloworld(){
-        StringBuilder sb= new StringBuilder("hello world");
-        return sb.toString();
-    }
+
 }

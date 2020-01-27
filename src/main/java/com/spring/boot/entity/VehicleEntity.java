@@ -1,8 +1,6 @@
 package com.spring.boot.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "vehicle_tbl")
@@ -14,6 +12,7 @@ public class VehicleEntity {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return Id;
     }

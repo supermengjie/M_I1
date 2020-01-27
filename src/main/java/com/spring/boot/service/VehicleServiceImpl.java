@@ -23,8 +23,9 @@ public class VehicleServiceImpl implements VehicleService {
         if(optVehicleEntity.isPresent()){
             VehicleEntity vehicleEntity = optVehicleEntity.get();
             vehicleEntity.setMake(vehicle.getMake());
-            vehicleEntity.setModel(vehicle.getMake());
+            vehicleEntity.setModel(vehicle.getModel());
             vehicleEntity.setYear(vehicle.getYear());
+            vehicleDao.save(vehicleEntity);
             return "success";
         }else{
             return "failure";
@@ -50,6 +51,11 @@ public class VehicleServiceImpl implements VehicleService {
            vs.add(v);
        }
         return vs;
+    }
+
+    public List<Vehicle> findVehiclesFiltered(int year, String make, String model){
+
+        return null;
     }
 
     @Override

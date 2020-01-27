@@ -1,6 +1,7 @@
 package com.spring.boot.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Vehicle {
     private int Id;
@@ -8,14 +9,16 @@ public class Vehicle {
     private String Make;
     private String Model;
 
+    @JsonProperty("Id")
     public int getId() {
         return Id;
     }
 
+
     public void setId(int id) {
         Id = id;
     }
-
+    @JsonProperty("Year")
     public int getYear() {
         return Year;
     }
@@ -24,6 +27,7 @@ public class Vehicle {
         Year = year;
     }
 
+    @JsonProperty("Make")
     public String getMake() {
         return Make;
     }
@@ -32,6 +36,7 @@ public class Vehicle {
         Make = make;
     }
 
+    @JsonProperty("Model")
     public String getModel() {
         return Model;
     }
