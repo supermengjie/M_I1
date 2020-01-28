@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.spring.boot.vo.Vehicle;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> findVehicles(){
+
        Iterable<VehicleEntity> ves= vehicleDao.findAll();
        List<Vehicle> vs= new ArrayList<>();
        for(VehicleEntity ve : ves){
@@ -50,6 +52,39 @@ public class VehicleServiceImpl implements VehicleService {
            BeanUtils.copyProperties(ve, v);
            vs.add(v);
        }
+        return vs;
+    }
+
+    @Override
+    public List<Vehicle> findVehicles(Integer Year, String Model, String Make){
+        Iterable<VehicleEntity> ves;
+        System.out.println(Year+" "+Model+" "+Make);
+        if(Year!=null && Model!=null && Make!=null){
+            ves= vehicleDao.findByYearModelMake(Year,Model,Make);
+        }else if(Year!=null&&Model!=null){
+            ves=vehicleDao.findByYearModel(Year,Model);
+        }else if(Year!=null&&Make!=null){
+            ves=vehicleDao.findByYearMake(Year,Make);
+        }else if(Model!=null && Make!=null){
+            ves=vehicleDao.findByModelMake(Model, Make);
+        }else if(Year!=null){
+            ves =vehicleDao.findByYear(Year);
+        }else if(Model!=null){
+            ves= vehicleDao.findByModel(Model);
+        }else if(Make!=null){
+            System.out.println("hi");
+            ves=vehicleDao.findByMake(Make);
+            System.out.println(ves);
+        }else{
+            ves=vehicleDao.findAll();
+        }
+        //Iterable<VehicleEntity> ves= vehicleDao.findAll();
+        List<Vehicle> vs= new ArrayList<>();
+        for(VehicleEntity ve : ves){
+            Vehicle v = new Vehicle();
+            BeanUtils.copyProperties(ve, v);
+            vs.add(v);
+        }
         return vs;
     }
 

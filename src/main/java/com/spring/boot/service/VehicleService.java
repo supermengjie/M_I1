@@ -12,6 +12,8 @@ public interface VehicleService {
 
     List<Vehicle> findVehicles();
 
+    List<Vehicle> findVehicles(Integer Year, String Model, String Make);
+
     Vehicle findVehiclesById(int id);
 
     void deleteVehicleById(int id);

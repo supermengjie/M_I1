@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,16 +20,16 @@ public class VehicleController {
 
    @GetMapping()
     public List<Vehicle > getVehicles(@RequestParam(value = "Year", required = false) Integer Year, @RequestParam(value = "Make", required = false) String Make, @RequestParam(value = "Model",required = false)String Model){
-       System.out.println(Year+" "+Make+" "+Model);
-       List<Vehicle> vehicles = vehicleService.findVehicles();
-        System.out.println(vehicles);
+       //System.out.println(Year+" "+Make+" "+Model);
+       List<Vehicle> vehicles = vehicleService.findVehicles(Year, Model, Make);
+        //System.out.println(vehicles);
         return  vehicles;
     }
 
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Vehicle addVehicles( @RequestBody Vehicle vehicle){
-        System.out.println(vehicle);
+    public Vehicle addVehicles(@Valid @RequestBody Vehicle vehicle) throws Exception{
+        //System.out.println(vehicle);
         if(vehicle == null){
             System.out.println("no vehicle");
             return null;
@@ -41,7 +42,7 @@ public class VehicleController {
     }
 
     @PutMapping()
-    public void updateVehicle(@RequestBody Vehicle vehicle){
+    public void updateVehicle(@Valid @RequestBody Vehicle vehicle){
         System.out.println(vehicle);
         vehicleService.update(vehicle);
 
