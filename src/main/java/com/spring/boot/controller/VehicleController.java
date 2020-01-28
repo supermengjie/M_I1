@@ -49,7 +49,7 @@ public class VehicleController {
 
 
     @GetMapping("/{id}")
-    public Vehicle findVehicleById(@PathVariable Integer id){
+    public Vehicle getVehicleById(@PathVariable Integer id){
         System.out.println(id);
 
         Vehicle vehicle = vehicleService.findVehiclesById(id);
